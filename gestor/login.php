@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($resultado) == 1) {
         // Inicio de sesión exitoso
         $_SESSION['nombre_usuario'] = $nombre_correo;
-        header("location: inicio.html"); // Redirige al usuario a la página de inicio
+        header("location: inicio.php"); // Redirige al usuario a la página de inicio
         exit; // Detiene la ejecución del script después de redirigir
     } else {
         // Credenciales incorrectas

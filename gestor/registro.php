@@ -1,10 +1,10 @@
 <?php
-$servidor="localhost";
-$usuario="root";
-$clave="";
-$baseDeDatos="ggg";
+$servidor = "localhost";
+$usuario = "root";
+$clave = "";
+$baseDeDatos = "ggg";
 
-$enlace= mysqli_connect ($servidor, $usuario, $clave, $baseDeDatos);
+$enlace = mysqli_connect($servidor, $usuario, $clave, $baseDeDatos);
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ $enlace= mysqli_connect ($servidor, $usuario, $clave, $baseDeDatos);
         /* Esto es para centrar el contenido del formulario de login */
         .center-content {
             display: flex;
-            justify-content: center; /* Cambiado a 'center' */
+            justify-content: center;
             align-items: flex-start;
             height: 100vh;
             margin-top: 80px;
@@ -54,34 +54,42 @@ $enlace= mysqli_connect ($servidor, $usuario, $clave, $baseDeDatos);
         <strong>¡Regístrate ahora y comienza a planificar tus galas con estilo y facilidad!</strong>
     </p>
 
-        <form action="#" name="ejemplo2" method="post"><br>
-            <h2><strong>Crear cuenta</strong></h2>
-            Nombre <br><input type="text" name="nombreCliente"><br>
-            Correo <br><input type="email" name="correoCliente"><br>
-            Telefono  <br><input type="text" name="telCliente"><br>
-            Contraseña <br><input type="password" name="passCliente"><br>
-            La contraseña debe contener al menos seis caracteres. <br><br>
+    <form action="#" name="Registro_de_usuario" method="post"><br>
+        <h2><strong>Crear cuenta</strong></h2>
+        Nombre <br><input type="text" name="nombreCliente"><br>
+        Correo <br><input type="email" name="correoCliente"><br>
+        Telefono  <br><input type="text" name="telCliente"><br>
+        Contraseña <br><input type="password" name="passCliente"><br>
+        La contraseña debe contener al menos seis caracteres. <br><br>
 
-            <input type="submit" name="registro">
-            <input type="reset"><br><br>
+        <input type="submit" name="registro">
+        <input type="reset"><br><br>
 
-            Al crear una cuenta, aceptas las <strong>Condiciones de Uso <br> y el Aviso de Privacidad</strong> de Gestor de grandes galas (GGG). <br>
-            ¿Ya tienes una cuenta? <a href="login.php">Inicia Sesion</a>
-        </form>
+        Al crear una cuenta, aceptas las <strong>Condiciones de Uso <br> y el Aviso de Privacidad</strong> de Gestor de grandes galas (GGG). <br>
+        ¿Ya tienes una cuenta? <a href="login.php">Inicia Sesion</a>
+    </form>
 </body>
 </html>
 
 <?php
-    if(isset($_POST['registro']))
-    {
-        $nombreCliente= $_POST['nombreCliente'];
-        $correoCliente= $_POST['correoCliente'];
-        $telCliente= $_POST['telCliente'];
-        $passCliente= $_POST['passCliente'];
+if (isset($_POST['registro'])) {
+    $nombreCliente = $_POST['nombreCliente'];
+    $correoCliente = $_POST['correoCliente'];
+    $telCliente = $_POST['telCliente'];
+    $passCliente = $_POST['passCliente'];
 
-        $stmt = $enlace->prepare("INSERT INTO usuarios (nombre, celular, correo, contraseña) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $nombreCliente, $telCliente, $correoCliente, $passCliente);
-        $stmt->execute();
+    $stmt = $enlace->prepare("INSERT INTO usuarios (nombre, celular, correo, contraseña) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $nombreCliente, $telCliente, $correoCliente, $passCliente);
+
+    if ($stmt->execute()) {
+        $stmt->close();
+        // Redirect to another page, e.g., thank_you.php
+        header("Location: inicio.php");
+        exit();
+    } else {
+        // Handle error
+        echo "Error: " . $stmt->error;
         $stmt->close();
     }
+}
 ?>

@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+// Verificar si el usuario ha iniciado sesión
+if(isset($_SESSION['nombre_usuario'])) {
+    $nombre_usuario = $_SESSION['nombre_usuario'];
+} else {
+    // Si el usuario no ha iniciado sesión, redirigirlo al formulario de inicio de sesión
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,7 +23,7 @@
 <body class="body">
 
     <details class="firstoptions">
-        <summary>Nombre de Usuario</summary>
+        <summary><?php echo $nombre_usuario; ?></summary>
         <ul>
           <li><a href="editar_cuenta.php">Editar Datos de la Cuenta</a></li>
           <li><a href="pago.html">Métodos de Pago</a></li>
