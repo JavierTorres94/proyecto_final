@@ -57,7 +57,7 @@ if (!$enlace) {
         <h2><strong>Crear cuenta</strong></h2>
         Nombre <br><input type="text" name="nombreCliente" required><br>
         Correo <br><input type="email" name="correoCliente" required><br>
-        Telefono  <br><input type="text" name="telCliente" required><br>
+        Teléfono <br><input type="text" name="telCliente" required><br>
         Contraseña <br><input type="password" name="passCliente" required><br>
         La contraseña debe contener al menos seis caracteres. <br><br>
 
@@ -81,9 +81,10 @@ if (isset($_POST['registro'])) {
     $stmt->bind_param("ssss", $nombreCliente, $telCliente, $correoCliente, $passCliente);
 
     if ($stmt->execute()) {
-        // Iniciar sesión y almacenar el nombre del usuario en la sesión
+        // Iniciar sesión y almacenar el nombre y el ID del usuario en la sesión
         session_start();
         $_SESSION['nombre_usuario'] = $nombreCliente;
+        $_SESSION['id_usuario'] = $stmt->insert_id;
 
         $stmt->close();
         // Redirigir a inicio.php

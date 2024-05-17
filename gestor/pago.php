@@ -10,6 +10,18 @@ if (!$enlace) {
     die("Conexión fallida: " . mysqli_connect_error());
 }
 
+session_start();
+
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['id_usuario'])) {
+    // Si no ha iniciado sesión, redirigir a la página de inicio de sesión
+    header("Location: login.php");
+    exit();
+}
+
+// Obtener el ID de usuario de la sesión
+$id_usuario = $_SESSION['id_usuario'];
+
 // Obtener los datos del formulario de pago
 $tipoPago = $_POST['nivel'];
 $titular = $_POST['nombre'];
@@ -17,7 +29,6 @@ $numeroTarjeta = $_POST['texto1'] . $_POST['texto2'] . $_POST['texto3'] . $_POST
 $fechaExpiracion = $_POST['expira'];
 $codigoSeguridad = $_POST['crv'];
 $montoTotal = 1234.56; // Total fijo
-$id_usuario = 1; // Aquí debes obtener el ID del usuario autenticado. Esto es solo un ejemplo.
 
 $tipoPagoTexto = '';
 if ($tipoPago == '1') {

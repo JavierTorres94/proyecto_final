@@ -18,12 +18,20 @@ $aperitivos = isset($_POST['aperitivos']) ? implode(', ', $_POST['aperitivos']) 
 $platoPrincipal = isset($_POST['platoPrincipal']) ? implode(', ', $_POST['platoPrincipal']) : '';
 $postre = isset($_POST['postre']) ? implode(', ', $_POST['postre']) : '';
 $musica = isset($_POST['musica']) ? implode(', ', $_POST['musica']) : '';
-$id_usuario = 1; // Aquí debes obtener el ID del usuario autenticado. Esto es solo un ejemplo.
-$id_evento = $tipoEvento;
+
+session_start();
+
+if(isset($_SESSION['id_usuario'])) {
+    $id_usuario = $_SESSION['id_usuario'];
+} else {
+    // Si el usuario no ha iniciado sesión, redirigirlo al formulario de inicio de sesión
+    header("Location: login.php");
+    exit();
+}
 
 // Insertar los datos en la tabla Reservas
 $sql = "INSERT INTO Reservas (id_usuario, id_evento, fecha, nivel_ingreso, aperitivos, plato_principal, postre, musica) 
-        VALUES ('$id_usuario', '$id_evento', '$fecha', '$nivel', '$aperitivos', '$platoPrincipal', '$postre', '$musica')";
+        VALUES ('$id_usuario', '$tipoEvento', '$fecha', '$nivel', '$aperitivos', '$platoPrincipal', '$postre', '$musica')";
 
 if (mysqli_query($enlace, $sql)) {
     // Redirigir a la página de pago
