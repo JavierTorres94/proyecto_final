@@ -5,6 +5,10 @@ $clave = "";
 $baseDeDatos = "ggg";
 
 $enlace = mysqli_connect($servidor, $usuario, $clave, $baseDeDatos);
+
+if (!$enlace) {
+    die("Conexión fallida: " . mysqli_connect_error());
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +20,6 @@ $enlace = mysqli_connect($servidor, $usuario, $clave, $baseDeDatos);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/estilos.css"> 
     <style>
-        /* Esto es para centrar el contenido del formulario de login */
         .center-content {
             display: flex;
             justify-content: center;
@@ -24,13 +27,9 @@ $enlace = mysqli_connect($servidor, $usuario, $clave, $baseDeDatos);
             height: 100vh;
             margin-top: 80px;
         }
-
-        /* Esto es para dar un ancho al párrafo */
         p {
             width: 50%;
         }
-
-        /* Esto es para dar un ancho al formulario */
         form {
             width: 30%;
         }
@@ -41,7 +40,7 @@ $enlace = mysqli_connect($servidor, $usuario, $clave, $baseDeDatos);
         <br><br><br>
         <strong>¿Por qué registrarte en nuestro gestor de galas?</strong><br><br>
         
-        <strong>Acceso exclusivo:</strong> Al registrarte, obtendrás acceso exclusivo a todas las funcionalidades <br> de nuestro gestor de galas,desde la creación de eventos hasta la gestión de invitados. <br>
+        <strong>Acceso exclusivo:</strong> Al registrarte, obtendrás acceso exclusivo a todas las funcionalidades <br> de nuestro gestor de galas, desde la creación de eventos hasta la gestión de invitados. <br>
         
         <strong>Organización simplificada:</strong> Con nuestra plataforma, podrás organizar tus galas <br> de manera fácil y eficiente. <br>
         
@@ -56,10 +55,10 @@ $enlace = mysqli_connect($servidor, $usuario, $clave, $baseDeDatos);
 
     <form action="#" name="Registro_de_usuario" method="post"><br>
         <h2><strong>Crear cuenta</strong></h2>
-        Nombre <br><input type="text" name="nombreCliente"><br>
-        Correo <br><input type="email" name="correoCliente"><br>
-        Telefono  <br><input type="text" name="telCliente"><br>
-        Contraseña <br><input type="password" name="passCliente"><br>
+        Nombre <br><input type="text" name="nombreCliente" required><br>
+        Correo <br><input type="email" name="correoCliente" required><br>
+        Telefono  <br><input type="text" name="telCliente" required><br>
+        Contraseña <br><input type="password" name="passCliente" required><br>
         La contraseña debe contener al menos seis caracteres. <br><br>
 
         <input type="submit" name="registro">
@@ -82,12 +81,16 @@ if (isset($_POST['registro'])) {
     $stmt->bind_param("ssss", $nombreCliente, $telCliente, $correoCliente, $passCliente);
 
     if ($stmt->execute()) {
+        // Iniciar sesión y almacenar el nombre del usuario en la sesión
+        session_start();
+        $_SESSION['nombre_usuario'] = $nombreCliente;
+
         $stmt->close();
-        // Redirect to another page, e.g., thank_you.php
+        // Redirigir a inicio.php
         header("Location: inicio.php");
         exit();
     } else {
-        // Handle error
+        // Manejar error
         echo "Error: " . $stmt->error;
         $stmt->close();
     }

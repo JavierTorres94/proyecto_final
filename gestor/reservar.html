@@ -18,57 +18,52 @@
         
     </div>
    
-    
     <div class="container">
-        <div class="section">
-            <label for="tipoEvento"><strong>Tipo de evento:</strong></label><br>
-            <select name="tipoEvento" id="tipoEvento">
-                <option value="1">Bautizo</option>
-                <option value="2">XV</option>
-                <option value="3">Boda</option>
-                <option value="4">Graduación</option>
-                <option value="5">Cumpleaños</option>
-            </select><br><br>
+        <form action="reservar.php" method="POST">
+            <div class="section">
+                <label for="tipoEvento"><strong>Tipo de evento:</strong></label><br>
+                <select name="tipoEvento" id="tipoEvento">
+                    <option value="1">Bautizo</option>
+                    <option value="2">XV</option>
+                    <option value="3">Boda</option>
+                    <option value="4">Graduación</option>
+                    <option value="5">Cumpleaños</option>
+                </select><br><br>
 
-            <label for="fecha"><strong>Selecciona una fecha:</strong></label><br>
-            <input type="date" id="fecha" name="fecha"> <br><br>
+                <label for="fecha"><strong>Selecciona una fecha:</strong></label><br>
+                <input type="date" id="fecha" name="fecha"> <br><br>
 
-            <p><strong>Requerimiento para ingreso:</strong></p>
-            <input type="radio" name="nivel" value="1">Invitación<br>
-            <input type="radio" name="nivel" value="2">Credencial<br>
-            <input type="radio" name="nivel" value="3">Sin requerimientos
-        </div>
+                <p><strong>Requerimiento para ingreso:</strong></p>
+                <input type="radio" name="nivel" value="Invitación">Invitación<br>
+                <input type="radio" name="nivel" value="Credencial">Credencial<br>
+                <input type="radio" name="nivel" value="Sin requerimientos">Sin requerimientos
+            </div>
 
-               
-        <div class="section2">
-            <p><strong>Seleccione platillos:</strong></p>
-            <p><strong>Aperitivos:</strong></p>
-            <input type="checkbox" name="aperitivos" value="Sin aperitivos">Sin aperitivos<br>
-            <input type="checkbox" name="aperitivos" value="Ensalada">Ensalada<br>
-            <input type="checkbox" name="aperitivos" value="Sashimi">Sashimi<br><br>
-            <p><strong>Plato principal:</strong></p>
-            <input type="checkbox" name="platoPrincipal" value="Sin plato principal">Sin plato principal<br>
-            <input type="checkbox" name="platoPrincipal" value="Taquiza">Taquiza<br>
-            <input type="checkbox" name="platoPrincipal" value="Espaguetti">Espagueti<br><br>
-            <p><strong>Postre:</strong></p>
-            <input type="checkbox" name="postre" value="Sin postre">Sin postre<br>
-            <input type="checkbox" name="postre" value="Paletas">Paletas<br>
-            <input type="checkbox" name="postre" value="Churros">Churros
+            <div class="section2">
+                <p><strong>Seleccione platillos:</strong></p>
+                <p><strong>Aperitivos:</strong></p>
+                <input type="checkbox" name="aperitivos[]" value="Sin aperitivos">Sin aperitivos<br>
+                <input type="checkbox" name="aperitivos[]" value="Ensalada">Ensalada<br>
+                <input type="checkbox" name="aperitivos[]" value="Sashimi">Sashimi<br><br>
+                <p><strong>Plato principal:</strong></p>
+                <input type="checkbox" name="platoPrincipal[]" value="Sin plato principal">Sin plato principal<br>
+                <input type="checkbox" name="platoPrincipal[]" value="Taquiza">Taquiza<br>
+                <input type="checkbox" name="platoPrincipal[]" value="Espagueti">Espagueti<br><br>
+                <p><strong>Postre:</strong></p>
+                <input type="checkbox" name="postre[]" value="Sin postre">Sin postre<br>
+                <input type="checkbox" name="postre[]" value="Paletas">Paletas<br>
+                <input type="checkbox" name="postre[]" value="Churros">Churros
 
-            <br><br>
-            <p><strong>Música:</strong></p>
-            <input type="checkbox" name="musica" value="DJ">DJ<br>
-            <input type="checkbox" name="musica" value="En vivo">Música en vivo
-            <br><br>
+                <br><br>
+                <p><strong>Música:</strong></p>
+                <input type="checkbox" name="musica[]" value="DJ">DJ<br>
+                <input type="checkbox" name="musica[]" value="En vivo">Música en vivo
+                <br><br>
 
-            <input type="submit" value="Siguiente" class="btn btn-primary me-md-2"><br><br>
-            <a href="inicio.html"><button class="btn btn-primary me-md-2" type="button">Cancelar</button></a>
-
-        </div>
-                      
+                <input type="submit" value="Siguiente" class="btn btn-primary me-md-2"><br><br>
+                <a href="inicio.php"><button class="btn btn-primary me-md-2" type="button">Cancelar</button></a>
+            </div>
+        </form>
     </div>
-    
-        
-
 </body>
 </html>

@@ -23,10 +23,9 @@ if(isset($_SESSION['nombre_usuario'])) {
 <body class="body">
 
     <details class="firstoptions">
-        <summary><?php echo $nombre_usuario; ?></summary>
+        <summary><?php echo htmlspecialchars($nombre_usuario); ?></summary>
         <ul>
-          <li><a href="editar_cuenta.php">Editar Datos de la Cuenta</a></li>
-          <li><a href="pago.html">Métodos de Pago</a></li>
+          <li><a href="editar_cuenta.html">Editar Datos de la Cuenta</a></li>
           <li><a href="pag_principal.html">Cerrar Sesión</a></li>
         </ul>
     </details><br>
@@ -34,8 +33,8 @@ if(isset($_SESSION['nombre_usuario'])) {
 <div class="topimage"><img src="imagenes/logo.png" width="300" height="200" title="Logo Gestor" alt="logo"></div>
 
 <div class="links">
-    <a href="pag_principal.html">Inicio</a> | <a href="orden.html">Mis Eventos</a> | <a href="reservar.html">Reservar Evento</a>
-  </div>
+    <a href="pag_principal.html">Inicio</a> | <a href="orden.php">Mis Eventos</a> | <a href="reservar.html">Reservar Evento</a>
+</div>
 
 <h1 class="title">Gestor de Grandes Galas (GGG)</h1><br>
 <p style="text-align: center; font-family: Michroma; font-size: 20px;">

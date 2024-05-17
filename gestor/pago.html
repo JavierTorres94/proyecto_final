@@ -10,7 +10,7 @@
 <body class="setting-form">
     <div class="container">
         <h1 class="text-center">Pagos</h1>
-        <form action="procesar_pago.php" method="POST">
+        <form action="pago.php" method="POST">
             <table class="table mx-auto">
                 <tr>
                     <td colspan="2"><strong>Tipo de pago</strong></td>
@@ -26,7 +26,7 @@
                     <td colspan="2"><strong>Titular</strong></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="text" name="nombre" maxlength="20" size="30"></td>
+                    <td colspan="2"><input type="text" name="nombre" maxlength="50" size="30"></td>
                 </tr>
                 <tr>
                     <td colspan="2"><strong>Número de tarjeta</strong></td>
@@ -49,6 +49,9 @@
                 </tr>
                 <tr>
                     <td colspan="2"><strong>Total</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2">1234.56</td>
                 </tr>
                 <tr>
                     <td colspan="2"><input type="submit" value="Confirmar" class="btn btn-primary"></td>
